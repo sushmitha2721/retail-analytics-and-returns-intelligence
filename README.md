@@ -23,3 +23,39 @@ The goals include:
 - Building a return-intelligence layer to detect cancellations, damaged goods, shipping issues, system errors, high-value returns, and suspicious discount activity
 
 - Generating insights about revenue trends, return patterns, and customer behaviour
+
+## 🔧 What We Did (Methodology)
+
+## 1️⃣ Python ETL Pipeline (etl.py)
+The ETL pipeline:
+- Loaded the raw CSV dataset
+
+- Cleaned dates and numerical fields
+
+- Recovered missing CustomerIDs using invoice-based inference
+
+- Tagged customers as Guest or Registered
+
+- Cleaned and normalized product descriptions
+
+- Used fuzzy matching to combine similar item descriptions
+
+- Created canonical clean descriptions (Description_clean)
+
+- Added derived fields such as Order_Value and customer type
+
+- Wrote cleaned data into MySQL in efficient chunks
+  This produced the foundational table: clean_transactions.
+
+  ## 2️⃣ SQL Classification Models
+  ** Sales Classification **
+Sales transactions were grouped into:
+- Product, service, adjustment
+  
+- Shipping fees, paid/free samples, manual corrections
+  
+- Revenue vs non-revenue vs fee
+This gives sales data clear business meaning.
+
+
+
