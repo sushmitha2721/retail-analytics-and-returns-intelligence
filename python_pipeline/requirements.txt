@@ -1,0 +1,6 @@
+pandas
+numpy
+rapidfuzz
+sqlalchemy
+mysql-connector-python
+python-dateutil
