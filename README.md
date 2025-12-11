@@ -203,9 +203,10 @@ RFM scoring assigns each user a segment:
 | Potential Loyalist | 149 | 3.43% |
 | Churn Risk | 149 | 3.43% |
 
-#### 📷 Recommended image:
-9. **rfm_segment_distribution.png**
 
+**RFM_CUSTOMER_SEGMENT_DISTRIBUTION**
+
+![RFM_CUSTOMER_SEGMENT_DISTRIBUTION](rfm_customer_segment_distribution.png)
 ---
 
 ### 📌 **E. Cohort Retention**
