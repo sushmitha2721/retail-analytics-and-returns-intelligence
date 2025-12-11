@@ -2,133 +2,139 @@
 ## End-to-End Python ETL + MySQL Data Analytics Project
 
 ## 📌 Overview
-The Retail Analytics & Returns Intelligence System transforms raw retail transaction data into a clean, structured, and analytics-ready dataset that reveals insights about sales performance, customer behaviour, product patterns, and return activity.
+This project transforms messy raw retail transaction data into a fully cleaned, standardized, and analytics-ready dataset.  
+It builds an intelligent SQL classification system for sales and returns, and produces deep analytics across:
 
-The system combines a Python ETL pipeline for data cleaning and standardization with SQL classification models that categorize sales and returns into meaningful business concepts. Analytical SQL modules then calculate trends, behaviors, and operational indicators across the retail dataset.
+- Sales performance
 
-This project showcases practical skills in Python, SQL, data cleaning, business intelligence, and analytical storytelling.
+- Product intelligence 
+
+- Return behavior detection
+
+- RFM segmentation
+
+- Cohort retention  
+
+This system demonstrates strong capabilities in Python ETL, SQL modeling, BI analytics, and business storytelling.
 
 ## 🎯 Objective
+The project aims to build a complete analytics ecosystem that:
 
-The objective of this project is to convert messy raw retail data into a structured, intelligent dataset that supports decision-making across sales, product performance, customer behaviour, and return activity.
+- Cleans and standardizes raw retail data
 
-The goals include:
+- Recovers missing CustomerIDs
 
-- Standardizing and cleaning product descriptions using fuzzy matching
+- Normalizes and consolidates product descriptions with fuzzy matching
 
-- Recovering missing or inconsistent customer information
+- Classifies sales and returns into meaningful business groups
 
-- Categorizing sales and returns into meaningful business groups
+- Identifies fraudulent, damaged, or abnormal returns
 
-- Building a return-intelligence layer to detect cancellations, damaged goods, shipping issues, system errors, high-value returns, and suspicious discount activity
+- Generates sales trends, customer metrics, return intelligence, and retention models
 
-- Generating insights about revenue trends, return patterns, and customer behaviour
 
-## 🔧 What We Did (Methodology)
+## 🔧 What I Did (Methodology)
 
 ## 1️⃣ Python ETL Pipeline (etl.py)
-The ETL pipeline:
-- Loaded the raw CSV dataset
+The ETL pipeline (`python_pipeline/etl.py`) performs:
 
-- Cleaned dates and numerical fields
+###  Data Loading  
+- Reads CSV dataset  
+- Parses dates and handles encoding
 
-- Recovered missing CustomerIDs using invoice-based inference
+### CustomerID Recovery  
+- Infers CustomerID from other rows within the same invoice  
+- Tags customers as **Registered** or **Guest**
 
-- Tagged customers as Guest or Registered
+### Product Description Cleaning  
+- Normalizes text (lowercase, remove noise, collapse whitespace)  
+- Uses **fuzzy matching** to cluster similar descriptions  
+- Creates a single canonical product name: `Description_clean`
 
-- Cleaned and normalized product descriptions
+### Derived Features  
+- `Order_Value = Quantity × UnitPrice`  
+- Customer type labels
 
-- Used fuzzy matching to combine similar item descriptions
+### Write to MySQL  
+- Writes the cleaned dataset (`clean_transactions`) in **chunks** to avoid connection drops.
 
-- Created canonical clean descriptions (Description_clean)
 
-- Added derived fields such as Order_Value and customer type
+📁 **Output table:** `clean_transactions`
 
-- Wrote cleaned data into MySQL in efficient chunks
+## 📊 2️⃣ SQL Classification Models
 
-This produced the foundational table: clean_transactions.
+### **A. Sales Classification**
+Sales are categorized into:
 
-## 2️⃣ SQL Classification Models
-**Sales Classification**
-  
-Sales transactions were grouped into:
-- Product, service, adjustment
-  
-- Shipping fees, paid/free samples, manual corrections
-  
-- Revenue vs non-revenue vs fee
+| Category | Meaning |
+|---------|---------|
+| **product** | regular product sale |
+| **service** | postage, shipping, Amazon fees |
+| **adjustment** | manual corrections, free samples |
+| **product_type** | regular / accessory / shipping / sample |
+| **financial_type** | revenue / non-revenue / fee |
 
-This gives sales data clear business meaning.
+This provides business meaning to raw sales rows.
 
-**Returns Classification**
+📁 **Output view:** `sales_classified`
 
-A custom rule-based returns intelligence system classifies returns by:
+### **B. Returns Classification**
+A custom rule-based SQL engine categorizes returns by:
 
-- **Return Type** (cancellation, damaged goods, system return, service return, customer return, price adjustment)
+#### **Return_Type**
+- cancellation  
+- customer_return  
+- price_adjustment  
+- damaged_goods  
+- service_return  
+- system_return  
 
-- **Return Reason** (defective, shipping error, suspicious discount, high-value return, order cancellation, frequent returner, etc.)
+#### **Return_Reason**
+- defective_product  
+- shipping_error  
+- suspicious_discount  
+- frequent_returner  
+- high_value  
 
-- **Refund Status** (processed, pending, pending_review, fraud_review, review_required)
+#### **Refund_Status**
+- processed  
+- pending  
+- pending_review  
+- fraud_review  
+- review_required  
 
-This converts raw return data into operational insights.
+📁 **Output view:** `returns_classified`
 
-## 3️⃣ Analytics Modules
-**Sales Analytics**
+This allows detection of abnormal or fraud-like return behavior.
 
-- Monthly revenue trends
+---
 
-- Top-selling products
+## 📈 3️⃣ Analytical Modules
 
-- Revenue by country
+---
 
-- Product return rates
+### 📌 **A. Sales Analytics**
+Includes:
 
-**Returns Analytics**
+- Monthly revenue trends  
+- Top 10 revenue-generating products  
+- Revenue by country  
+- Product-level return rates
 
-- Total return quantity and value
 
-- Return type breakdown
+ ![Monthly Revenue Trend](screenshots/monthly_revenue_trend.png)
 
-- Return reason × refund status matrix
 
-- Most returned products
+ ![TOP_PRODUCTS_BY_REVENUE](screenshots/top_products_by_revenue.png)
 
-- Returns by country
+ 
+### 📌 **B. Returns Analytics**
+Insights include:
 
-**Customer Analytics**
+- Total return quantity & value  
+- Most returned products  
+- Return type summary  
+- Return reason × refund status matrix  
 
-- Customer lifetime value (LTV)
-
-- Repeat purchase behaviour
-
-- Retention vs churn
-
-- Monthly active customers
-
-- Customer profitability by country
-
-## 📊 Key Results (Insights)
-
-**Sales Insights**
-
-- Revenue follows strong seasonal patterns.
-
-- Top products contribute most of the revenue.
-
-- Several products show unusually high return rates
-
-**Returns Insights**
-
-- Customer returns form the majority of return volume.
-
-- High-value returns and suspicious discounts were detected automatically.
-
-- Damaged, defective, and shipping-related returns appear consistently.
-
-**Customer Insights**
-
-- A small number of customers generate most of the revenue.
-
-- Repeat purchase behaviour is low → churn issue.
-
-- Monthly active customer trends align with seasonal demand peaks.
+![TOP_PRODUCTS_BY_REVENUE](screenshots/total_returns_overview.png)
+ 
