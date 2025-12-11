@@ -120,12 +120,14 @@ Includes:
 - Top 10 revenue-generating products  
 - Revenue by country  
 - Product-level return rates
+  
+**Monthly Revenue Trend**
+  
+![Monthly Revenue Trend](screenshots/monthly_revenue_trend.png)
 
+**TOP_PRODUCTS_BY_REVENUE**
 
- ![Monthly Revenue Trend](screenshots/monthly_revenue_trend.png)
-
-
- ![TOP_PRODUCTS_BY_REVENUE](screenshots/top_products_by_revenue.png)
+![TOP_PRODUCTS_BY_REVENUE](screenshots/top_products_by_revenue.png)
 
  
 ### 📌 **B. Returns Analytics**
@@ -136,5 +138,100 @@ Insights include:
 - Return type summary  
 - Return reason × refund status matrix  
 
-![TOP_PRODUCTS_BY_REVENUE](screenshots/total_returns_overview.png)
- 
+**RETURN_TYPE_SUMMARY**
+
+![RETURN_TYPE_SUMMARY](screenshots/return_type_summary.png)
+
+**TOP_RETURNED_PRODUCTS**
+
+![TOP_RETURNED_PRODUCTS](screenshots/top_returned_products.png)
+
+
+### 📌 **C. Customer Analytics**
+Includes:
+
+#### 1️⃣ Customer Lifetime Value (LTV)
+Shows total revenue, returns, and net value per customer.
+
+#### 2️⃣ Repeat Purchase Behavior
+Shows repeat customer ratio.
+
+#### 3️⃣ Retention vs Churn
+| Status | Meaning |
+|--------|---------|
+| **retained** | purchased in first & last month |
+| **churned** | purchased in first month but not last |
+
+#### 4️⃣ Customer Profitability by Country
+
+#### 5️⃣ Monthly Active Customers
+
+**MONTHLY_ACTIVE_CUSTOMERS** 
+
+![MONTHLY_ACTIVE_CUSTOMERS](screenshots/monthly_active_customers.png)
+  
+**RETENTION_VS_CHURN**
+
+![RETENTION_VS_CHURN](screenshots/customer_churn_summary.png)
+---
+
+### 📌 **D. RFM Segmentation**
+Customers segmented using:
+
+- **Recency**
+- **Frequency**
+- **Monetary**
+
+RFM scoring assigns each user a segment:
+
+- Champion  
+- Loyal  
+- Big Spender  
+- Potential Loyalist  
+- At Risk  
+- Churn Risk  
+- Other  
+
+#### Sample Output  
+| Segment | Count | % |
+|--------|-------|----|
+| Other | 2241 | 51.65% |
+| At Risk | 1107 | 25.51% |
+| Loyal | 255 | 5.88% |
+| Big Spender | 235 | 5.42% |
+| Champion | 203 | 4.68% |
+| Potential Loyalist | 149 | 3.43% |
+| Churn Risk | 149 | 3.43% |
+
+#### 📷 Recommended image:
+9. **rfm_segment_distribution.png**
+
+---
+
+### 📌 **E. Cohort Retention**
+Tracks customer retention month by month.
+
+Example retention summary:
+
+| Metric | Value |
+|--------|--------|
+| Month 1 retention | 20.50% |
+| Month 2 retention | 22.01% |
+| Month 3 retention | 23.22% |
+| Month 6 retention | 24.37% |
+| Month 12 retention | 26.55% |
+
+### 📷 Recommended image:
+10. **cohort_retention_summary.png**
+
+---
+
+
+
+
+
+
+
+
+
+
