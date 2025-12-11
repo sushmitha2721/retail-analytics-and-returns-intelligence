@@ -206,7 +206,7 @@ RFM scoring assigns each user a segment:
 
 **RFM_CUSTOMER_SEGMENT_DISTRIBUTION**
 
-![RFM_CUSTOMER_SEGMENT_DISTRIBUTION](rfm_customer_segment_distribution.png)
+![RFM_CUSTOMER_SEGMENT_DISTRIBUTION](screenshots/rfm_customer_segment_distribution.png)
 ---
 
 ### 📌 **E. Cohort Retention**
@@ -222,13 +222,42 @@ Example retention summary:
 | Month 6 retention | 24.37% |
 | Month 12 retention | 26.55% |
 
-### 📷 Recommended image:
-10. **cohort_retention_summary.png**
+**COHORT_RETENTION_SUMMARY**
 
+![COHORT_RETENTION_SUMMARY](screenshots/cohort_retention_summary.png)
 ---
 
+## 📊 Results Summary
 
+The analytics system produced several key business insights:
 
+###  📈 Sales Performance
+
+- Revenue shows strong seasonality, peaking in November–December.
+- A small set of products (e.g., Regency Cakestand, White Hanging Heart T-Light Holder) drive majority of total revenuE.
+- The UK dominates total revenue, followed by Germany and France.
+
+### 📦 Returns Intelligence
+
+- Total returns: 484K units, worth ~€896K.
+- Majority of returns were customer returns, followed by system/manual corrections.
+- Several products show abnormally high return counts, indicating potential quality issues.
+- Suspicious discounts and very high-value returns were automatically flagged.
+
+### 👥 Customer Behaviour
+
+- Only ~26% of customers make more than one purchase → low retention.
+- 73% churn rate after first order.
+- RFM segmentation shows:
+  - Champions: 4.7%
+  - Big Spenders: 5.4%
+  - At-Risk customers: 25.5%
+  - Churn Risk: 3.4%
+ 
+### 📊 Cohort Retention
+
+- Average Month-1 retention is ~20%, increasing gradually to ~26% by Month-12.
+- Indicates weak customer onboarding and poor early-stage retention.
 
 
 
